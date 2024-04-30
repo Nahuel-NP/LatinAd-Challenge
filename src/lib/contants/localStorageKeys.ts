@@ -1,0 +1,1 @@
+export const USER_CREDENTILAS = 'USER_INFO';
