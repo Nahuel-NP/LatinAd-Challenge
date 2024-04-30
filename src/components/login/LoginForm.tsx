@@ -1,19 +1,16 @@
-import { ChangeEvent, FormEvent, useState } from "react";
-import useLocalStorage from "../../hooks/useLocalStorage";
-import {
-  BASE_URL,
-  DEFAULT_APP_CONTEXT_VALUES,
-  USER_CREDENTILAS,
-} from "../../lib/contants";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
+
 import { LoginResponse } from "../../lib/interfaces";
+import { BASE_URL } from "../../lib/contants";
+import { AppContext } from "../../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 export const LoginForm = () => {
-  const [credentials, setCredentials] = useLocalStorage(
-    USER_CREDENTILAS,
-    DEFAULT_APP_CONTEXT_VALUES.userCredentials
-  );
-
   const [showPassword, setShowPassword] = useState(false);
+
+  const { saveCredentials } = useContext(AppContext);
+
+  const navigate = useNavigate();
 
   const toggleShowPassword = (e: ChangeEvent<HTMLInputElement>) => {
     setShowPassword(e.target.checked);
@@ -34,11 +31,12 @@ export const LoginForm = () => {
     })
       .then((response) => response.json())
       .then((data: LoginResponse) => {
-        setCredentials({
+        saveCredentials({
           email: data.email,
-          token: data.token,
           isLogged: true,
+          token: data.token,
         });
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
