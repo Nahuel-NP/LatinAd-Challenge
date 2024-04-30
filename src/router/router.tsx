@@ -1,16 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
-import { AppLayout } from "../layouts/AppLayout";
 import { LoginPage } from "../pages/LoginPage";
-import { Displays } from "../pages/Displays";
-import { EditDisplay } from "../pages/EditDisplay";
+import { Displays } from "../pages/DisplaysPage";
+import { EditDisplay } from "../pages/EditDisplayPage";
+import { LoginLayout, PrivateLayout } from "../layouts";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
+    element: <PrivateLayout />,
     children: [
       {
-        index:true,
+        index: true,
         element: <Displays />,
       },
       {
@@ -21,7 +21,13 @@ export const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <LoginPage />,
+    element: <LoginLayout />,
+    children:[
+      {
+        index:true,
+        element: <LoginPage/>
+      }
+    ]
   },
   //TODO: 404
 ]);
