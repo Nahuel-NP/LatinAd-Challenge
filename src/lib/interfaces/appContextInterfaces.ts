@@ -8,5 +8,6 @@ export interface UserCredentials {
 
 export interface AppContextValues {
   userCredentials: UserCredentials
-  setUserCredentials: Dispatch<SetStateAction<UserCredentials>>
+  // setCredentials: Dispatch<SetStateAction<UserCredentials>>
+  saveCredentials: (value:UserCredentials) => void
 }

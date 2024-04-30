@@ -7,5 +7,6 @@ export const DEFAULT_APP_CONTEXT_VALUES: AppContextValues = {
     token: '',
     isLogged: false
   },
-  setUserCredentials: () => { }
+  /* setUserCredentials: () => { } */
+  saveCredentials: () => { }
 }
