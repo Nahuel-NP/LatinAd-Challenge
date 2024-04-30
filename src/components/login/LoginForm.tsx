@@ -1,7 +1,18 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { BASE_URL, LoginResponse } from "../../lib";
+import useLocalStorage from "../../hooks/useLocalStorage";
+import {
+  BASE_URL,
+  DEFAULT_APP_CONTEXT_VALUES,
+  USER_CREDENTILAS,
+} from "../../lib/contants";
+import { LoginResponse } from "../../lib/interfaces";
 
 export const LoginForm = () => {
+  const [credentials, setCredentials] = useLocalStorage(
+    USER_CREDENTILAS,
+    DEFAULT_APP_CONTEXT_VALUES.userCredentials
+  );
+
   const [showPassword, setShowPassword] = useState(false);
 
   const toggleShowPassword = (e: ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +34,11 @@ export const LoginForm = () => {
     })
       .then((response) => response.json())
       .then((data: LoginResponse) => {
-        console.log(data);
+        setCredentials({
+          email: data.email,
+          token: data.token,
+          isLogged: true,
+        });
       })
       .catch((error) => {
         console.log(error);
