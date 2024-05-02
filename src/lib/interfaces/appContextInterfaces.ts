@@ -6,8 +6,17 @@ export interface UserCredentials {
   isLogged: boolean;
 }
 
+export interface Filters {
+  page: number,
+  perPage: number,
+  name: string,
+  type: string;
+}
+
 export interface AppContextValues {
   userCredentials: UserCredentials
   // setCredentials: Dispatch<SetStateAction<UserCredentials>>
-  saveCredentials: (value:UserCredentials) => void
+  saveCredentials: (value: UserCredentials) => void,
+  filters: Filters,
+  setFilters: Dispatch<SetStateAction<Filters>>
 }

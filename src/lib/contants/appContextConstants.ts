@@ -7,6 +7,12 @@ export const DEFAULT_APP_CONTEXT_VALUES: AppContextValues = {
     token: '',
     isLogged: false
   },
-  /* setUserCredentials: () => { } */
-  saveCredentials: () => { }
+  saveCredentials: () => { },
+  filters: {
+    page: 1,
+    perPage: 3,
+    name: '',
+    type: '',
+  },
+  setFilters: () => { }
 }

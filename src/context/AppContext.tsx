@@ -23,8 +23,12 @@ export default function AppProvider({ children }: Props) {
     setUserCredentials(values);
   };
 
+  const [filters, setFilters] = useState(DEFAULT_APP_CONTEXT_VALUES.filters);
+
   return (
-    <AppContext.Provider value={{ userCredentials, saveCredentials }}>
+    <AppContext.Provider
+      value={{ userCredentials, saveCredentials, filters, setFilters }}
+    >
       {children}
     </AppContext.Provider>
   );
