@@ -6,8 +6,11 @@ export default {
       fontFamily: {
         poppins: ["poppins", "sans-serif"],
       },
-      colors:{
-        latinBlue:"#1890ff"
+      colors: {
+        latinBlue: "#1890ff",
+      },
+      gridTemplateRows:{
+        wrapper:"auto 1fr auto"
       }
     },
   },
