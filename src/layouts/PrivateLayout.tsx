@@ -10,13 +10,12 @@ export const PrivateLayout = () => {
   if (userCredentials.isLogged) {
     const queryClient = new QueryClient();
     return (
-      <>
+      <main className="relative min-h-screen">
         <Navbar />
-
         <QueryClientProvider client={queryClient}>
           <Outlet />
         </QueryClientProvider>
-      </>
+      </main>
     );
   }
   return <Navigate to="/login" />;
