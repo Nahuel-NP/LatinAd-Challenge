@@ -1,4 +1,4 @@
-import { Toaster } from "sonner";
+
 import { LoginForm } from "../components/login/LoginForm";
 
 export const LoginPage = () => {
@@ -17,7 +17,7 @@ export const LoginPage = () => {
       <section className="w-full max-w-md px-4 ">
         <LoginForm />
       </section>
-      <Toaster position="bottom-center" richColors />
+
     </section>
   );
 };
