@@ -40,6 +40,7 @@ export const LoginForm = () => {
         navigate("/");
       })
       .catch((error) => {
+        console.log(error)
         toast.error("Email o contraseña incorrecto");
       })
       .finally(() => setLoading(false));
