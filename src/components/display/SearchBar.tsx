@@ -7,7 +7,7 @@ export const SearchBar = () => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const onTypeChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setFilters({ ...filters, type: e.target.value });
+    setFilters({ ...filters, type: e.target.value, page: 1 });
   };
 
   const search = (event: FormEvent<HTMLFormElement>) => {
@@ -21,7 +21,7 @@ export const SearchBar = () => {
   };
 
   const clearName = () => {
-    setFilters({ ...filters, name: "" });
+    setFilters({ ...filters, name: "", page: 1 });
     formRef.current?.reset();
   };
 
