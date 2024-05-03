@@ -51,7 +51,7 @@ export const Displays = () => {
         <aside className="col-span-1 p-6 ">
           <h2>hola</h2>
         </aside>
-        <div className="grid p-4 border-l-2 border-gray-300 lg:col-span-4 grid-rows-wrapper">
+        <div className="grid p-4 border-t-2 border-gray-300 lg:border-l-2 lg:border-t-0 lg:col-span-4 grid-rows-wrapper">
           <SearchBar />
 
           <div className="p-8 ">
