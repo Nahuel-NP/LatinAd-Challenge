@@ -34,8 +34,15 @@ export const DisplayCard = (display: Display) => {
         </p>
       </div>
       <div className="flex justify-end col-span-3 gap-8 uppercase rounded-lg">
-        <button className="font-semibold text-orange-500 transition-transform hover:scale-105">Editar</button>
-        <button className="font-semibold transition-transform text-dodger-blue-600 hover:scale-105">Ver Más</button>
+        <button className="font-semibold text-red-500 transition-transform hover:scale-105">
+          Eliminar
+        </button>
+        <button className="font-semibold text-orange-500 transition-transform hover:scale-105">
+          Editar
+        </button>
+        <button className="font-semibold transition-transform text-dodger-blue-600 hover:scale-105">
+          Ver Más
+        </button>
       </div>
     </section>
   );
