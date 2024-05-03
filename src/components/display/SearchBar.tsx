@@ -60,7 +60,7 @@ export const SearchBar = () => {
           <select
             id="type"
             onChange={onTypeChange}
-            className="px-4 py-2 bg-white border rounded-md min-w-28 border-dodger-blue-800"
+            className="px-4 py-2 text-center bg-white border rounded-md appearance-none min-w-28 border-dodger-blue-800"
             name="type"
           >
             <option value="">Todas</option>
@@ -74,7 +74,7 @@ export const SearchBar = () => {
           <select
             id="perPage"
             onChange={onSizeChange}
-            className="px-4 py-2 bg-white border rounded-md border-dodger-blue-800"
+            className="px-4 py-2 text-center bg-white border rounded-md appearance-none border-dodger-blue-800"
             name="perPage"
             value={filters.perPage}
           >
