@@ -22,14 +22,28 @@ export const Pagination = ({ totalCount }: Props) => {
   return (
     <nav className="container flex justify-center gap-4 mx-auto ">
       <div>
-        <ul className="flex items-center h-10 -space-x-px text-base [&>li>button]:transition-colors [&>li>button]:border [&>li>button]:bg-white [&>li>button]:border-gray-300  [&>li>span]:bg-white">
+        <ul className="flex items-center h-10 -space-x-px text-base [&>li>button]:transition-colors [&>li>button]:border [&>li>button]:bg-white [&>li>button]:border-dodger-blue-800  [&>li>span]:bg-white">
           <li>
             <button
               disabled={filters.page === 1}
               onClick={() => changePage(filters.page - 1)}
-              className="flex items-center justify-center h-10 px-4 disabled:pointer-events-none disabled:bg-gray-200 rounded-s-lg hover:bg-latinBlue hover:text-white "
+              className="flex items-center justify-center h-10 px-4 disabled:pointer-events-none disabled:bg-gray-200 rounded-s-lg hover:bg-dodger-blue-600 hover:text-white "
             >
-              Anterior
+              <svg
+                className="w-2.5 h-2.5 rtl:rotate-180"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 6 10"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M5 1 1 5l4 4"
+                />
+              </svg>
             </button>
           </li>
 
@@ -37,7 +51,7 @@ export const Pagination = ({ totalCount }: Props) => {
             <li>
               <button
                 onClick={() => changePage(1)}
-                className="flex items-center justify-center h-10 px-4 hover:bg-latinBlue hover:text-white "
+                className="flex items-center justify-center h-10 px-4 hover:bg-dodger-blue-600 hover:text-white "
               >
                 1
               </button>
@@ -52,7 +66,7 @@ export const Pagination = ({ totalCount }: Props) => {
           )}
 
           <li>
-            <button className="z-10 flex items-center justify-center h-10 px-4 text-white !bg-latinBlue">
+            <button className="z-10 flex items-center justify-center h-10 px-4 text-white !bg-dodger-blue-800">
               {filters.page}
             </button>
           </li>
@@ -68,7 +82,7 @@ export const Pagination = ({ totalCount }: Props) => {
             <li>
               <button
                 onClick={() => changePage(lastPage)}
-                className="z-10 flex items-center justify-center h-10 px-4 hover:bg-latinBlue hover:text-white"
+                className="z-10 flex items-center justify-center h-10 px-4 hover:bg-dodger-blue-600 hover:text-white"
               >
                 {lastPage}
               </button>
@@ -79,9 +93,23 @@ export const Pagination = ({ totalCount }: Props) => {
             <button
               onClick={() => changePage(filters.page + 1)}
               disabled={filters.page === lastPage || lastPage === 0}
-              className="flex items-center justify-center h-10 px-4 disabled:pointer-events-none disabled:bg-gray-200 rounded-e-lg hover:bg-latinBlue hover:text-white "
+              className="flex items-center justify-center h-10 px-4 disabled:pointer-events-none disabled:bg-gray-200 rounded-e-lg hover:bg-dodger-blue-600 hover:text-white "
             >
-              Siguiente
+              <svg
+                className="w-2.5 h-2.5 rtl:rotate-180"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 6 10"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m1 9 4-4-4-4"
+                />
+              </svg>
             </button>
           </li>
         </ul>
