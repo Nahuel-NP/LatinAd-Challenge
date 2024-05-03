@@ -1,4 +1,5 @@
 import { AppContextValues } from "../interfaces";
+import { PER_PAGE_VALUES } from "./sharedConstants";
 
 
 export const DEFAULT_APP_CONTEXT_VALUES: AppContextValues = {
@@ -10,7 +11,7 @@ export const DEFAULT_APP_CONTEXT_VALUES: AppContextValues = {
   saveCredentials: () => { },
   filters: {
     page: 1,
-    perPage: 3,
+    perPage: PER_PAGE_VALUES[0],
     name: '',
     type: '',
   },
