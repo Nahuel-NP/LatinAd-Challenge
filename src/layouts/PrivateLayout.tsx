@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { Navbar } from "../components/Navbar";
+import { Toaster } from "sonner";
 
 export const PrivateLayout = () => {
   const { userCredentials } = useContext(AppContext);
@@ -11,6 +12,7 @@ export const PrivateLayout = () => {
       <main className="relative min-h-screen">
         <Navbar />
         <Outlet />
+        <Toaster richColors/>
       </main>
     );
   }
