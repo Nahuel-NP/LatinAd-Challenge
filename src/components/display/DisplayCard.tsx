@@ -30,7 +30,7 @@ export const DisplayCard = (display: Display) => {
           <span className="font-semibold text-dodger-blue-950">
             Descripción:
           </span>{" "}
-          {display.description} ho ho asd asdasldkas asjdkas asdasd asd asd asdas dasdasd asd 
+          {display.description}
         </p>
       </div>
       <div className="flex justify-end col-span-3 gap-8 uppercase rounded-lg">
