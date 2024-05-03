@@ -25,7 +25,7 @@ export const Displays = () => {
           Authorization: `Bearer ${userCredentials.token}`,
         },
       }
-    ).then((res) => res.json());
+    ).then((res) => res.json()).catch(error=>console.log(error));
 
   const { data, isFetching, isError } = useQuery({
     queryKey: [
@@ -46,29 +46,25 @@ export const Displays = () => {
   });
 
   return (
-    <section className="flex flex-col pt-[72px] bg-white min-h-svh">
-      <div className="container grid flex-1 grid-rows-1 mx-auto lg:grid-cols-5 ">
+    <section className="flex flex-col pt-[72px] bg-gray-100 min-h-svh">
+      <div className="container grid flex-1 grid-rows-1 p-4 mx-auto lg:grid-cols-5">
         <aside className="col-span-1 p-6 ">
           <h2>hola</h2>
         </aside>
-        <div className="grid p-4 border-l lg:col-span-4 grid-rows-wrapper">
-          <header className="bg-gray-100 border-t border-gray-400 rounded-t-lg border-x justify-self-start-start">
-            <SearchBar />
-          </header>
+        <div className="grid p-4 border-l-2 border-gray-300 lg:col-span-4 grid-rows-wrapper">
+          <SearchBar />
 
-          <div className="p-8 border border-gray-400 border-x">
+          <div className="p-8 ">
             {isFetching && (
               <div className="grid w-full h-full place-items-center">
-                <p>Loading...</p>
+                <p className="text-2xl font-bold text-dodger-blue-950">Cargando...</p>
               </div>
             )}
             {!isFetching && !isError && <DisplaysGrid data={data?.data!} />}
           </div>
 
           {!isFetching && !isError && (
-            <div className="p-6 bg-gray-100 border-b border-gray-400 rounded-b-lg border-x">
-              <Pagination totalCount={data?.totalCount!} />
-            </div>
+            <Pagination totalCount={data?.totalCount!} />
           )}
         </div>
       </div>
