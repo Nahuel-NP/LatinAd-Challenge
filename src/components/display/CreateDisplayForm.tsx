@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FormEvent, useContext } from "react";
 import { BASE_URL, QUERY_KEY } from "../../lib/contants";
 import { AppContext } from "../../context/AppContext";
+import { toast } from "sonner";
 
 interface DisplayToCreate {
   name: string;
@@ -38,7 +39,10 @@ export const CreateDisplayForm = () => {
     mutationFn: createTodo,
     onError: (error) => window.alert(error),
     onSuccess: () => {
-      console.log("Invalida?");
+      toast.success("Display creado exitosamente", {
+        position: "top-center",
+        
+      });
       queryClient.invalidateQueries({
         queryKey: [
           QUERY_KEY,
@@ -141,13 +145,13 @@ export const CreateDisplayForm = () => {
           </div>
         </div>
       </fieldset>
-      <fieldset title="tipo" className="grid grid-cols-2">
+      <fieldset title="tipo" className="grid grid-cols-2 ">
         <legend>Tipo</legend>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center gap-1">
           <input required type="radio" id="indoor" name="type" value="indoor" />
           <label htmlFor="indoor">indoor</label>
         </div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center gap-1">
           <input
             required
             type="radio"
@@ -160,9 +164,10 @@ export const CreateDisplayForm = () => {
       </fieldset>
       <button
         type="submit"
-        className="p-2 text-white rounded-md bg-dodger-blue-700"
+        disabled={createDisplayMutation.isPending}
+        className="self-center p-2 mt-4 text-white rounded-md min-w-36 disabled:pointer-events-none disabled:bg-gray-500 bg-dodger-blue-700"
       >
-        Crear
+        {createDisplayMutation.isPending ? "Creando..." : "Crear"}
       </button>
     </form>
   );
