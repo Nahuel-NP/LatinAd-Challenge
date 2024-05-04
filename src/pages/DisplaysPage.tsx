@@ -58,7 +58,7 @@ export const Displays = () => {
     <section className="flex flex-col flex-1 h-full bg-gray-100 " style={{viewTransitionName:'view'}}>
       <div className="container grid flex-1 grid-rows-[auto_1fr] lg:grid-rows-1 p-4 mx-auto lg:grid-cols-7">
         <aside className="flex flex-col items-center p-4 lg:col-span-2">
-          <h2 className="mb-4 text-xl text-center">Crear nuevo display</h2>
+          <h2 className="w-full mb-4 text-xl text-center border-b-2">Crear nuevo display</h2>
           <button
             onClick={toggleShowForm}
             className="px-4 py-2 my-2 text-white bg-orange-500 rounded-lg justify-self-center lg:hidden"
@@ -74,7 +74,7 @@ export const Displays = () => {
             <CreateDisplayForm />
           </div>
         </aside>
-        <div className="grid p-4 border-t-2 border-gray-300 lg:border-l-2 lg:border-t-0 lg:col-span-5 grid-rows-wrapper">
+        <div className="grid p-4 border-t-2 lg:border-l-2 lg:border-t-0 lg:col-span-5 grid-rows-wrapper">
           <SearchBar />
 
           <div className="mt-4">
