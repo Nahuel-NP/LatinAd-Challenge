@@ -34,10 +34,12 @@ export const Displays = () => {
   const { data, isFetching, isError } = useQuery({
     queryKey: [
       QUERY_KEY,
+      userCredentials.email,
       filters.page,
       filters.name,
       filters.type,
       filters.perPage,
+
     ],
     queryFn: () =>
       fetchDysplays(
