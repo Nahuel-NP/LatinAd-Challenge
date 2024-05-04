@@ -46,10 +46,7 @@ export const CreateDisplayForm = () => {
       queryClient.invalidateQueries({
         queryKey: [
           QUERY_KEY,
-          filters.page,
-          filters.name,
-          filters.type,
-          filters.perPage,
+                  
         ],
       });
     },
