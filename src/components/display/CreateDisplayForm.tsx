@@ -79,7 +79,7 @@ export const CreateDisplayForm = () => {
   return (
     <form
       onSubmit={onSubmitForm}
-      className="flex flex-col max-w-sm mx-auto w-full gap-4 [&>div]:flex [&>div]:flex-col bg-gray-200 p-4 rounded-lg"
+      className="flex flex-col max-w-sm mx-auto w-full gap-4 [&>div]:flex [&>div]:flex-col bg-gray-300 p-4 rounded-lg"
     >
       <div>
         <label htmlFor="name">Nombre</label>
