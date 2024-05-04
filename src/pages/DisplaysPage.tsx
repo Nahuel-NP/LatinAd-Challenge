@@ -7,6 +7,7 @@ import { DisplayResponse } from "../lib/interfaces";
 import { SearchBar } from "../components/display/SearchBar";
 import { Pagination } from "../components/display/Pagination";
 import { CreateDisplayForm } from "../components/display/CreateDisplayForm";
+import { MessageResult } from "../components/shared/MessageResult";
 
 export const Displays = () => {
   const { userCredentials, filters } = useContext(AppContext);
@@ -77,26 +78,12 @@ export const Displays = () => {
           <SearchBar />
 
           <div className="mt-4">
-            {isFetching && (
-              <div className="grid w-full h-full place-items-center">
-                <p className="text-2xl font-bold text-dodger-blue-950">
-                  Cargando...
-                </p>
-              </div>
-            )}
+            {isFetching && <MessageResult message="Cargando.." />}
+            {isError && <MessageResult message="Ocurrió un error" />}
             {!isFetching && !isError && <DisplaysGrid data={data?.data!} />}
           </div>
 
-          {!isFetching && !isError && (
-            <Pagination totalCount={data?.totalCount!} />
-          )}
-          {isError && (
-            <div className="grid w-full h-full place-items-center">
-              <p className="text-2xl font-bold text-dodger-blue-950">
-                Ocurrio un Error
-              </p>
-            </div>
-          )}
+          {data?.data.length && <Pagination totalCount={data?.totalCount!} />}
         </div>
       </div>
     </section>
