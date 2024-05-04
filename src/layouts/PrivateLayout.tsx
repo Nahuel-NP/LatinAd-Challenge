@@ -10,11 +10,13 @@ export const PrivateLayout = () => {
 
   if (userCredentials.isLogged) {
     return (
-      <main className="relative min-h-screen">
-        <Navbar />
-        <Outlet />
-        <DeleteDialog/>
-        <Toaster richColors/>
+      <main className="relative ">
+        <div className="grid grid-rows-[auto_1fr] min-h-screen">
+          <Navbar />
+          <Outlet />
+        </div>
+        <DeleteDialog />
+        <Toaster richColors />
       </main>
     );
   }
