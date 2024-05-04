@@ -20,5 +20,5 @@ export const PrivateLayout = () => {
       </main>
     );
   }
-  return <Navigate to="/log-in" />;
+  return <Navigate to="/login" />;
 };
