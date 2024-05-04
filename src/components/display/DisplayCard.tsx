@@ -1,6 +1,13 @@
+import { useContext } from "react";
 import { Display } from "../../lib/interfaces";
 
+import { AppContext } from "../../context/AppContext";
+
 export const DisplayCard = (display: Display) => {
+  const { setShowDeleteDialog } = useContext(AppContext);
+  const handleDelete = (id: number) => {
+    setShowDeleteDialog(true);
+  };
   return (
     <section className="grid grid-cols-3 grid-rows-[1fr_auto_auto] gap-2 p-4  bg-white  rounded-xl  max-w-sm mx-auto">
       <div className="overflow-hidden rounded-lg ">
@@ -34,7 +41,10 @@ export const DisplayCard = (display: Display) => {
         </p>
       </div>
       <div className="flex justify-end col-span-3 gap-8 uppercase rounded-lg">
-        <button className="font-semibold text-red-500 transition-transform hover:scale-105">
+        <button
+          onClick={() => handleDelete(display.id)}
+          className="font-semibold text-red-500 transition-transform hover:scale-105"
+        >
           Eliminar
         </button>
         <button className="font-semibold text-orange-500 transition-transform hover:scale-105">
