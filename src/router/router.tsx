@@ -1,8 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import { LoginPage } from "../pages/LoginPage";
 import { Displays } from "../pages/DisplaysPage";
-import { EditDisplay } from "../pages/EditDisplayPage";
+import { DetailsDisplayPage } from "../pages/DetailsDisplayPage";
 import { LoginLayout, PrivateLayout } from "../layouts";
+import { NotFoundPage } from "../pages/NotFoundPage";
 
 export const router = createBrowserRouter([
   {
@@ -14,20 +15,23 @@ export const router = createBrowserRouter([
         element: <Displays />,
       },
       {
-        path: "display/:name",
-        element: <EditDisplay />,
+        path: "display/:id",
+        element: <DetailsDisplayPage />,
       },
     ],
   },
   {
     path: "/log-in",
     element: <LoginLayout />,
-    children:[
+    children: [
       {
-        index:true,
-        element: <LoginPage/>
-      }
-    ]
+        index: true,
+        element: <LoginPage />,
+      },
+    ],
   },
-  //TODO: 404
+  {
+    path: "*",
+    element:<NotFoundPage/>
+  },
 ]);
