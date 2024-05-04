@@ -1,21 +1,27 @@
 import { useContext } from "react";
 import { Display } from "../../lib/interfaces";
 import { AppContext } from "../../context/AppContext";
-
+import useViewTransition from "../../hooks/useVIewTransition";
 
 export const DisplayCard = (display: Display) => {
-  const { setShowDeleteDialog,setActiveDisplay } = useContext(AppContext);
+  const { setShowDeleteDialog, setActiveDisplay } = useContext(AppContext);
+  const { handletransition } = useViewTransition();
 
-
-
-  const handleDelete = (dispay:Display) => {
+  const handleDelete = (dispay: Display) => {
     setShowDeleteDialog(true);
-    setActiveDisplay(dispay)
+    setActiveDisplay(dispay);
+  };
+
+  const viewDetails = () => {
+    handletransition(`/display/${display.id}`);
   };
   return (
     <section className="grid grid-cols-3 grid-rows-[1fr_auto_auto] gap-2 p-4  bg-white  rounded-xl  max-w-sm mx-auto">
       <div className="overflow-hidden rounded-lg ">
         <img
+          loading="lazy"
+          width={200}
+          height={200}
           className="object-cover w-full h-full"
           src={display.picture_url}
           alt={display.name}
@@ -23,7 +29,7 @@ export const DisplayCard = (display: Display) => {
       </div>
 
       <div className="relative col-span-2  p-2 rounded-lg text-dodger-blue-950 [&>p>span]:font-semibold [&>p]:text-gray-600">
-        <h3 className="text-xl font-bold ">{display.name}</h3>
+        <h3 className="text-xl font-bold line-clamp-2">{display.name}</h3>
         <p>
           {" "}
           <span>Tipo:</span> {display.type}
@@ -54,7 +60,10 @@ export const DisplayCard = (display: Display) => {
         <button className="font-semibold text-orange-500 transition-transform hover:scale-105">
           Editar
         </button>
-        <button className="font-semibold transition-transform text-dodger-blue-600 hover:scale-105">
+        <button
+          onClick={viewDetails}
+          className="font-semibold transition-transform text-dodger-blue-600 hover:scale-105"
+        >
           Ver Más
         </button>
       </div>
