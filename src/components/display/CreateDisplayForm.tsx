@@ -14,7 +14,7 @@ interface DisplayToCreate {
 }
 
 export const CreateDisplayForm = () => {
-  const { userCredentials, filters } = useContext(AppContext);
+  const { userCredentials} = useContext(AppContext);
   const queryClient = useQueryClient();
 
   const createTodo = (display: DisplayToCreate) => {

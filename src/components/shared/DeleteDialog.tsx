@@ -9,7 +9,6 @@ export const DeleteDialog = () => {
     showDeleteDialog,
     setShowDeleteDialog,
     userCredentials,
-    filters,
     activeDisplay,
     setActiveDisplay,
   } = useContext(AppContext);
