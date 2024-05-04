@@ -15,5 +15,8 @@ export const DEFAULT_APP_CONTEXT_VALUES: AppContextValues = {
     name: '',
     type: '',
   },
-  setFilters: () => { }
+  setFilters: () => { },
+  showDeleteDialog: false,
+  setShowDeleteDialog: () => { }
+
 }

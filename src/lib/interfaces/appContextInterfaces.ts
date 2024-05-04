@@ -4,6 +4,8 @@ export interface UserCredentials {
   email: string;
   token: string;
   isLogged: boolean;
+
+
 }
 
 export interface Filters {
@@ -15,8 +17,9 @@ export interface Filters {
 
 export interface AppContextValues {
   userCredentials: UserCredentials
-  // setCredentials: Dispatch<SetStateAction<UserCredentials>>
   saveCredentials: (value: UserCredentials) => void,
   filters: Filters,
-  setFilters: Dispatch<SetStateAction<Filters>>
+  setFilters: Dispatch<SetStateAction<Filters>>,
+  showDeleteDialog: boolean;
+  setShowDeleteDialog: Dispatch<SetStateAction<boolean>>
 }

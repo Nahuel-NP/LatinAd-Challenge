@@ -24,10 +24,17 @@ export default function AppProvider({ children }: Props) {
   };
 
   const [filters, setFilters] = useState(DEFAULT_APP_CONTEXT_VALUES.filters);
-
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   return (
     <AppContext.Provider
-      value={{ userCredentials, saveCredentials, filters, setFilters }}
+      value={{
+        userCredentials,
+        saveCredentials,
+        filters,
+        setFilters,
+        setShowDeleteDialog,
+        showDeleteDialog,
+      }}
     >
       {children}
     </AppContext.Provider>
