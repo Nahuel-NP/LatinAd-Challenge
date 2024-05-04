@@ -15,7 +15,7 @@ export const Pagination = ({ totalCount }: Props) => {
   };
 
   return (
-    <nav className="container flex justify-center gap-4 mx-auto ">
+    <nav className="container flex justify-center gap-4 mx-auto mt-4 ">
       <div>
         <ul className="flex items-center h-10 -space-x-px text-base [&>li>button]:transition-colors [&>li>button]:border [&>li>button]:bg-white [&>li>button]:border-dodger-blue-950  [&>li>span]:bg-white">
           <li>
