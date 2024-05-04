@@ -5,6 +5,7 @@ import { Display } from "../lib/interfaces";
 import { useParams } from "react-router-dom";
 import { MessageResult } from "../components/shared/MessageResult";
 import useViewTransition from "../hooks/useVIewTransition";
+import { EditDisplayForm } from "../components/display/EditDisplayForm";
 
 export const DetailsDisplayPage = () => {
   const params = useParams();
@@ -45,62 +46,75 @@ export const DetailsDisplayPage = () => {
     fetchDysplayById(+params.id!);
   }, []);
 
+  const [showForm, setShowForm] = useState(false);
+  const toggleShowForm = () => {
+    setShowForm(!showForm);
+  };
+
   return (
     <section
-      className="grid bg-gray-100 place-items-center "
+      className="flex flex-col flex-1 h-full bg-gray-100 "
       style={{ viewTransitionName: "view" }}
     >
       {hasError && <MessageResult message="Ocurrió un error inesperado" />}
       {isLoading && <MessageResult message="Cargando..." />}
       {!isLoading && !hasError && (
-        <section className="grid w-full max-w-screen-md gap-4 p-4 mx-auto bg-white md:grid-cols-2 rounded-xl">
-          <div className="overflow-hidden rounded-lg aspect-square">
-            <img
-              loading="lazy"
-              width={300}
-              height={300}
-              className="object-cover w-full h-full max-w-lg "
-              src={display?.picture_url}
-              alt={display?.name}
-            />
-          </div>
-
-          <div className="[&>p]:text-lg [&>p]:text-gray-600 [&>p>span]:text-dodger-blue-950  [&>p>span]:font-semibold">
+        <div className="container grid flex-1 grid-rows-[auto_1fr] lg:grid-rows-1 p-4 mx-auto lg:grid-cols-7">
+          <aside className="flex flex-col items-center p-4 lg:col-span-2">
+            <button className="self-start p-2 text-white bg-orange-500 rounded-md" onClick={() => handletransition("/")}>Volver</button>
+            <h2 className="w-full pb-2 mb-4 text-xl text-center border-b-2">Editar display</h2>
             <button
-              onClick={() => handletransition("/")}
-              className="p-2 text-white transition-colors bg-orange-500 rounded-lg hover:bg-orange-700"
+              onClick={toggleShowForm}
+              className="px-4 py-2 my-2 text-white bg-orange-500 rounded-lg justify-self-center lg:hidden"
             >
-              Volver
+              {showForm ? "Ocultar formulario" : "Ver formulario"}
             </button>
-            <h3 className="text-2xl font-bold text-dodger-blue-950">
-              {display?.name}
-            </h3>
-            <p>
-              <span>Tipo:</span> {display?.type}
-            </p>
-            <p>
-              <span>Resolución:</span> {display?.resolution_width} x{" "}
-              {display?.resolution_height}
-            </p>
-            <p>
-              <span>Precio x día:</span> ${display?.price_per_day}
-            </p>
-            <p className="text-gray-600 ">
-              <span className="font-semibold text-dodger-blue-950">
-                Descripción:
-              </span>{" "}
-              {display?.description}
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-              ducimus cupiditate ad consequatur reiciendis! Temporibus animi
-              neque rerum ad molestiae dolorum, fugit repellat ullam nihil
-              maiores vitae cupiditate deleniti minima? Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Aliquid enim sunt aspernatur
-              eveniet voluptate repudiandae eos veniam itaque pariatur
-              asperiores earum voluptatem optio, odio blanditiis ullam ipsa
-              sequi perspiciatis hic?
-            </p>
+            <div
+              style={{ transition: "max-height ease-in 0.3s" }}
+              className={`overflow-hidden max-h-0 lg:max-h-full  ${
+                showForm ? "max-h-full" : "max-h-0 lg:max-h-full"
+              }`}
+            >
+              <EditDisplayForm />
+            </div>
+          </aside>
+          <div className="p-4 border-t-2 lg:border-l-2 lg:border-t-0 lg:col-span-5">
+            <section className="grid w-full max-w-screen-md gap-4 p-4 mx-auto bg-white md:grid-cols-2 rounded-xl">
+              <div className="overflow-hidden rounded-lg aspect-square">
+                <img
+                  loading="lazy"
+                  width={300}
+                  height={300}
+                  className="object-cover w-full h-full max-w-lg "
+                  src={display?.picture_url}
+                  alt={display?.name}
+                />
+              </div>
+
+              <div className="[&>p]:text-lg lg [&>p]:text-gray-600 [&>p>span]:text-dodger-blue-950  [&>p>span]:font-semibold">
+                <h3 className="text-2xl font-bold text-dodger-blue-950">
+                  {display?.name}
+                </h3>
+                <p>
+                  <span>Tipo:</span> {display?.type}
+                </p>
+                <p>
+                  <span>Resolución:</span> {display?.resolution_width} x{" "}
+                  {display?.resolution_height}
+                </p>
+                <p>
+                  <span>Precio x día:</span> ${display?.price_per_day}
+                </p>
+                <p className="text-gray-600 ">
+                  <span className="font-semibold text-dodger-blue-950">
+                    Descripción:
+                  </span>{" "}
+                  {display?.description}
+                </p>
+              </div>
+            </section>
           </div>
-        </section>
+        </div>
       )}
     </section>
   );
