@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { Display } from "./ApiResponse";
 
 export interface UserCredentials {
   email: string;
@@ -21,5 +22,7 @@ export interface AppContextValues {
   filters: Filters,
   setFilters: Dispatch<SetStateAction<Filters>>,
   showDeleteDialog: boolean;
-  setShowDeleteDialog: Dispatch<SetStateAction<boolean>>
+  setShowDeleteDialog: Dispatch<SetStateAction<boolean>>,
+  activeDisplay: Display | null,
+  setActiveDisplay: Dispatch<SetStateAction<Display | null>>
 }

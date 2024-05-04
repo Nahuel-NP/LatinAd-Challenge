@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 import { DEFAULT_APP_CONTEXT_VALUES } from "../lib/contants/appContextConstants";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { USER_CREDENTILAS } from "../lib/contants";
-import { AppContextValues, UserCredentials } from "../lib/interfaces";
+import { AppContextValues, Display, UserCredentials } from "../lib/interfaces";
 
 export const AppContext = createContext<AppContextValues>(
   DEFAULT_APP_CONTEXT_VALUES
@@ -25,6 +25,9 @@ export default function AppProvider({ children }: Props) {
 
   const [filters, setFilters] = useState(DEFAULT_APP_CONTEXT_VALUES.filters);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+
+  const [activeDisplay, setActiveDisplay] = useState<Display | null>(null);
+  
   return (
     <AppContext.Provider
       value={{
@@ -34,6 +37,8 @@ export default function AppProvider({ children }: Props) {
         setFilters,
         setShowDeleteDialog,
         showDeleteDialog,
+        activeDisplay,
+        setActiveDisplay,
       }}
     >
       {children}
