@@ -26,7 +26,7 @@ export const SearchBar = () => {
   };
 
   return (
-    <section className="container grid gap-2 p-4 bg-gray-200 rounded-lg lg:grid-cols-2 justify-items-center md:p-6 md:gap-4">
+    <section className="container grid gap-2 p-4 bg-gray-200 rounded-lg xl:grid-cols-2 justify-items-center md:p-6 md:gap-4">
       <form className="flex w-full " onSubmit={search} ref={formRef}>
         <label className="sr-only" htmlFor="searchTerm">
           Buscar:
