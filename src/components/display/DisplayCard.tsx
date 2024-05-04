@@ -57,9 +57,6 @@ export const DisplayCard = (display: Display) => {
         >
           Eliminar
         </button>
-        <button className="font-semibold text-orange-500 transition-transform hover:scale-105">
-          Editar
-        </button>
         <button
           onClick={viewDetails}
           className="font-semibold transition-transform text-dodger-blue-600 hover:scale-105"
