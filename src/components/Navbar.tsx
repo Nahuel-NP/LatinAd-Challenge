@@ -10,7 +10,7 @@ export const Navbar = () => {
     saveCredentials(DEFAULT_APP_CONTEXT_VALUES.userCredentials);
   };
   return (
-    <nav className="fixed z-50 w-full bg-dodger-blue-950">
+    <nav className="z-[100] w-full  bg-dodger-blue-950">
       <div className="container flex items-center justify-between p-4 mx-auto font-poppins">
         <Link to="/" className="text-2xl font-semibold text-white uppercase">
           Latin<span className="font-bold text-dodger-blue-600">Ad</span>
