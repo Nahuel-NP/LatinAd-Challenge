@@ -53,6 +53,7 @@ export const EditDisplayForm = () => {
       })
       .catch((error) => {
         console.log(error);
+        throw new Error(error)
       });
   };
 
@@ -60,7 +61,9 @@ export const EditDisplayForm = () => {
     mutationFn: updateTodo,
     onError: (error) => {
       console.log(error)
-      toast.error('Ocurrió un error al actualizar')
+      toast.error('Ocurrió un error al actualizar',{
+        position: "top-center",
+      })
     },
     onSuccess: () => {
       toast.success("Display actualizado exitosamente", {

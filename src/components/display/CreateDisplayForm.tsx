@@ -31,7 +31,7 @@ export const CreateDisplayForm = () => {
         console.log(data);
       })
       .catch((error) => {
-        console.log(error);
+        throw new Error(error)
       });
   };
 
@@ -39,7 +39,9 @@ export const CreateDisplayForm = () => {
     mutationFn: createTodo,
     onError: (error) => {
       console.log(error);
-      toast.error("Ocurrió un error al actualizar");
+      toast.error("Ocurrió un error al crear",{
+        position:"top-center"
+      });
     },
     onSuccess: () => {
       toast.success("Display creado exitosamente", {
