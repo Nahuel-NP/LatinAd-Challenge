@@ -1,13 +1,37 @@
-/* import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { FormEvent, useContext } from "react";
-import { BASE_URL, QUERY_KEY } from "../../lib/contants";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { Display } from "../../lib/interfaces";
 import { AppContext } from "../../context/AppContext";
-import { toast } from "sonner";
-
-*/
 
 export const EditDisplayForm = () => {
-  /*  const { userCredentials } = useContext(AppContext);
+  const [formData, setFormData] = useState<Display>({
+    id: 0,
+    name: "",
+    description: "",
+    picture_url: "",
+    price_per_day: "",
+    resolution_height: "",
+    resolution_width: "",
+    type: "",
+    user_id: 0,
+  });
+
+  const { activeDisplay } = useContext(AppContext);
+
+  useEffect(() => {
+    setFormData(activeDisplay!);
+  }, []);
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    e.preventDefault();
+    const name = e.target.name;
+    const value = e.target.value;
+    setFormData((prevState) => {
+      return { ...prevState, [name]: value };
+    });
+  };
+  /* 
   const queryClient = useQueryClient();
 
   const updateTodo = (display: DisplayToCreate) => {
@@ -76,8 +100,10 @@ export const EditDisplayForm = () => {
           className="p-2 rounded-md"
           required
           type="text"
-          name="display_name"
+          name="name"
           id="name"
+          onChange={handleChange}
+          value={formData?.name}
           placeholder="Nombre"
         />
       </div>
@@ -86,6 +112,8 @@ export const EditDisplayForm = () => {
         <textarea
           required
           name="description"
+          onChange={handleChange}
+          value={formData?.description}
           className="p-2 rounded-md"
           placeholder="Descripción del display"
         />
@@ -98,6 +126,8 @@ export const EditDisplayForm = () => {
           type="number"
           min="1"
           name="price_per_day"
+          onChange={handleChange}
+          value={formData?.price_per_day}
           id="price_per_day"
           placeholder="Precio por día"
         />
@@ -112,6 +142,8 @@ export const EditDisplayForm = () => {
               type="number"
               id="ancho"
               name="resolution_width"
+              onChange={handleChange}
+              value={formData?.resolution_width}
               min={1}
               placeholder="Ancho"
               className="p-2 rounded-md"
@@ -125,6 +157,8 @@ export const EditDisplayForm = () => {
               id="alto"
               name="resolution_height"
               min={1}
+              onChange={handleChange}
+              value={formData?.resolution_height}
               placeholder="Alto"
               className="p-2 rounded-md"
             />
@@ -134,7 +168,15 @@ export const EditDisplayForm = () => {
       <fieldset title="tipo" className="grid grid-cols-2 ">
         <legend>Tipo</legend>
         <div className="flex items-center justify-center gap-1">
-          <input required type="radio" id="indoor" name="type" value="indoor" />
+          <input
+            required
+            type="radio"
+            id="indoor"
+            name="type"
+            value="indoor"
+            checked={formData.type === "indoor"}
+            onChange={handleChange}
+          />
           <label htmlFor="indoor">indoor</label>
         </div>
         <div className="flex items-center justify-center gap-1">
@@ -144,13 +186,15 @@ export const EditDisplayForm = () => {
             id="outdoor"
             name="type"
             value="outdoor"
+            checked={formData.type === "outdoor"}
+            onChange={handleChange}
           />
           <label htmlFor="outdoor">outdoor</label>
         </div>
       </fieldset>
       <button
         type="submit"
-       /*  disabled={createDisplayMutation.isPending} */
+        /*  disabled={createDisplayMutation.isPending} */
         className="self-center p-2 mt-4 text-white rounded-md min-w-36 disabled:pointer-events-none disabled:bg-gray-500 bg-dodger-blue-700"
       >
         {/* {createDisplayMutation.isPending ? "Creando..." : "Crear"} */}
