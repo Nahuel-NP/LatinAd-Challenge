@@ -20,6 +20,10 @@ Aplicación web para la administración de pantallas publicitarias de LatinAd.
 5. Ejecutar `npm run dev` para levantar el proyecto en modo desarrollo.
 
 
+## LOGIN
+Email: `pedroso.nahuel.dev@gmail.com`
+Password: `1234`
+
 ## Tech Stack
 React, Typescript, React Router DOM, TanStack React Query, TailwindCss y Sonner.
 
