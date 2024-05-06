@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { BASE_URL } from "../lib/contants";
 import { AppContext } from "../context/AppContext";
-import { Display } from "../lib/interfaces";
 import { useParams } from "react-router-dom";
 import { MessageResult } from "../components/shared/MessageResult";
 import useViewTransition from "../hooks/useVIewTransition";
@@ -11,7 +10,7 @@ export const DetailsDisplayPage = () => {
   const params = useParams();
   const { userCredentials, activeDisplay, setActiveDisplay } =
     useContext(AppContext);
-  const [display, setDisplay] = useState<Display>();
+
   const [isLoading, setLoading] = useState(false);
   const [hasError, setError] = useState(false);
 
@@ -31,7 +30,6 @@ export const DetailsDisplayPage = () => {
       const data = await response.json();
 
       if (data) {
-        setDisplay(data);
         setActiveDisplay(data);
       } else {
         setError(true);
@@ -44,10 +42,8 @@ export const DetailsDisplayPage = () => {
   };
 
   useEffect(() => {
-    if (!activeDisplay) {
+    if (!activeDisplay || activeDisplay.id !== +params.id!) {
       fetchDysplayById(+params.id!);
-    } else {
-      setDisplay(activeDisplay);
     }
   }, []);
 
@@ -57,7 +53,6 @@ export const DetailsDisplayPage = () => {
   };
 
   const backToHome = () => {
-    setActiveDisplay(null);
     handletransition("/");
   };
 
@@ -102,30 +97,30 @@ export const DetailsDisplayPage = () => {
                   width={300}
                   height={300}
                   className="object-cover w-full h-full max-w-lg "
-                  src={display?.picture_url}
-                  alt={display?.name}
+                  src={activeDisplay?.picture_url}
+                  alt={activeDisplay?.name}
                 />
               </div>
 
               <div className="[&>p]:text-lg lg [&>p]:text-gray-600 [&>p>span]:text-dodger-blue-950  [&>p>span]:font-semibold">
                 <h3 className="text-2xl font-bold text-dodger-blue-950">
-                  {display?.name}
+                  {activeDisplay?.name}
                 </h3>
                 <p>
-                  <span>Tipo:</span> {display?.type}
+                  <span>Tipo:</span> {activeDisplay?.type}
                 </p>
                 <p>
-                  <span>Resolución:</span> {display?.resolution_width} x{" "}
-                  {display?.resolution_height}
+                  <span>Resolución:</span> {activeDisplay?.resolution_width} x{" "}
+                  {activeDisplay?.resolution_height}
                 </p>
                 <p>
-                  <span>Precio x día:</span> ${display?.price_per_day}
+                  <span>Precio x día:</span> ${activeDisplay?.price_per_day}
                 </p>
                 <p className="text-gray-600 ">
                   <span className="font-semibold text-dodger-blue-950">
                     Descripción:
                   </span>{" "}
-                  {display?.description}
+                  {activeDisplay?.description}
                 </p>
               </div>
             </section>

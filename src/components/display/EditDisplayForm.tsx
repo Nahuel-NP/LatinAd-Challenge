@@ -1,6 +1,9 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 import { Display } from "../../lib/interfaces";
 import { AppContext } from "../../context/AppContext";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { BASE_URL, QUERY_KEY } from "../../lib/contants";
+import { toast } from "sonner";
 
 export const EditDisplayForm = () => {
   const [formData, setFormData] = useState<Display>({
@@ -15,7 +18,8 @@ export const EditDisplayForm = () => {
     user_id: 0,
   });
 
-  const { activeDisplay } = useContext(AppContext);
+  const { activeDisplay, userCredentials, setActiveDisplay } =
+    useContext(AppContext);
 
   useEffect(() => {
     setFormData(activeDisplay!);
@@ -31,12 +35,12 @@ export const EditDisplayForm = () => {
       return { ...prevState, [name]: value };
     });
   };
-  /* 
+
   const queryClient = useQueryClient();
 
-  const updateTodo = (display: DisplayToCreate) => {
-    return fetch(`${BASE_URL}/display`, {
-      method: "POST",
+  const updateTodo = (display: Display) => {
+    return fetch(`${BASE_URL}/display/${display.id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${userCredentials.token}`,
@@ -60,38 +64,31 @@ export const EditDisplayForm = () => {
         position: "top-center",
       });
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEY],
+        queryKey: [QUERY_KEY, userCredentials.email],
       });
+      setActiveDisplay(formData);
     },
   });
 
   const onSubmitForm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const form = event.currentTarget;
-    const {
-      display_name,
-      description,
-      resolution_width,
-      resolution_height,
-      type,
-      price_per_day,
-    } = event.target as HTMLFormElement;
 
     createDisplayMutation.mutate({
-      name: display_name.value,
-      description: description.value,
-      type: type.value,
-      price_per_day: price_per_day.value,
-      resolution_height: resolution_height.value,
-      resolution_width: resolution_width.value,
+      name: formData.name,
+      description: formData.description,
+      type: formData.type,
+      price_per_day: formData.price_per_day,
+      resolution_height: formData.resolution_height,
+      resolution_width: formData.resolution_width,
+      id: formData.id,
+      picture_url: formData.picture_url,
+      user_id: formData.user_id,
     });
-
-    form.reset();
-  }; */
+  };
 
   return (
     <form
-      /* onSubmit={onSubmitForm} */
+      onSubmit={onSubmitForm}
       className="flex flex-col max-w-sm mx-auto w-full gap-4 [&>div]:flex [&>div]:flex-col bg-gray-300 p-4 rounded-lg"
     >
       <div>
@@ -194,11 +191,10 @@ export const EditDisplayForm = () => {
       </fieldset>
       <button
         type="submit"
-        /*  disabled={createDisplayMutation.isPending} */
-        className="self-center p-2 mt-4 text-white rounded-md min-w-36 disabled:pointer-events-none disabled:bg-gray-500 bg-dodger-blue-700"
+        disabled={createDisplayMutation.isPending}
+        className="self-center p-2 mt-4 text-white transition-colors bg-orange-500 rounded-md hover:bg-orange-700 min-w-36 disabled:pointer-events-none disabled:bg-gray-500"
       >
-        {/* {createDisplayMutation.isPending ? "Creando..." : "Crear"} */}
-        Actualizar
+        {createDisplayMutation.isPending ? "Actualizando..." : "Actualizar"}
       </button>
     </form>
   );
