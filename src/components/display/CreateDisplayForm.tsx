@@ -14,7 +14,7 @@ interface DisplayToCreate {
 }
 
 export const CreateDisplayForm = () => {
-  const { userCredentials} = useContext(AppContext);
+  const { userCredentials } = useContext(AppContext);
   const queryClient = useQueryClient();
 
   const createTodo = (display: DisplayToCreate) => {
@@ -37,17 +37,16 @@ export const CreateDisplayForm = () => {
 
   const createDisplayMutation = useMutation({
     mutationFn: createTodo,
-    onError: (error) => window.alert(error),
+    onError: (error) => {
+      console.log(error);
+      toast.error("Ocurrió un error al actualizar");
+    },
     onSuccess: () => {
       toast.success("Display creado exitosamente", {
         position: "top-center",
-        
       });
       queryClient.invalidateQueries({
-        queryKey: [
-          QUERY_KEY,
-                  
-        ],
+        queryKey: [QUERY_KEY],
       });
     },
   });

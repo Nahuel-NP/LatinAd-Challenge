@@ -58,7 +58,10 @@ export const EditDisplayForm = () => {
 
   const createDisplayMutation = useMutation({
     mutationFn: updateTodo,
-    onError: (error) => window.alert(error),
+    onError: (error) => {
+      console.log(error)
+      toast.error('Ocurrió un error al actualizar')
+    },
     onSuccess: () => {
       toast.success("Display actualizado exitosamente", {
         position: "top-center",
