@@ -57,7 +57,7 @@ export const Displays = () => {
   };
 
   return (
-    <section className="flex flex-col flex-1 h-full bg-gray-100 " style={{viewTransitionName:'view'}}>
+    <section className="flex flex-col flex-1 h-full bg-gray-100 " >
       <div className="container grid flex-1 grid-rows-[auto_1fr] lg:grid-rows-1 p-4 mx-auto lg:grid-cols-7">
         <aside className="flex flex-col items-center p-4 lg:col-span-2">
           <h2 className="w-full mb-4 text-xl text-center border-b-2">Crear nuevo display</h2>

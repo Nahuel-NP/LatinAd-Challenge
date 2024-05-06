@@ -9,8 +9,8 @@ import { EditDisplayForm } from "../components/display/EditDisplayForm";
 
 export const DetailsDisplayPage = () => {
   const params = useParams();
-
-  const { userCredentials } = useContext(AppContext);
+  const { userCredentials, activeDisplay, setActiveDisplay } =
+    useContext(AppContext);
   const [display, setDisplay] = useState<Display>();
   const [isLoading, setLoading] = useState(false);
   const [hasError, setError] = useState(false);
@@ -32,6 +32,7 @@ export const DetailsDisplayPage = () => {
 
       if (data) {
         setDisplay(data);
+        setActiveDisplay(data);
       } else {
         setError(true);
       }
@@ -43,7 +44,11 @@ export const DetailsDisplayPage = () => {
   };
 
   useEffect(() => {
-    fetchDysplayById(+params.id!);
+    if (!activeDisplay) {
+      fetchDysplayById(+params.id!);
+    } else {
+      setDisplay(activeDisplay);
+    }
   }, []);
 
   const [showForm, setShowForm] = useState(false);
@@ -51,18 +56,27 @@ export const DetailsDisplayPage = () => {
     setShowForm(!showForm);
   };
 
+  const backToHome = () => {
+    setActiveDisplay(null);
+    handletransition("/");
+  };
+
   return (
-    <section
-      className="flex flex-col flex-1 h-full bg-gray-100 "
-      style={{ viewTransitionName: "view" }}
-    >
+    <section className="flex flex-col flex-1 h-full bg-gray-100 ">
       {hasError && <MessageResult message="Ocurrió un error inesperado" />}
       {isLoading && <MessageResult message="Cargando..." />}
       {!isLoading && !hasError && (
         <div className="container grid flex-1 grid-rows-[auto_1fr] lg:grid-rows-1 p-4 mx-auto lg:grid-cols-7">
           <aside className="flex flex-col items-center p-4 lg:col-span-2">
-            <button className="self-start p-2 text-white bg-orange-500 rounded-md" onClick={() => handletransition("/")}>Volver</button>
-            <h2 className="w-full pb-2 mb-4 text-xl text-center border-b-2">Editar display</h2>
+            <button
+              className="self-start p-2 text-white bg-orange-500 rounded-md"
+              onClick={backToHome}
+            >
+              Volver
+            </button>
+            <h2 className="w-full pb-2 mb-4 text-xl text-center border-b-2">
+              Editar display
+            </h2>
             <button
               onClick={toggleShowForm}
               className="px-4 py-2 my-2 text-white bg-orange-500 rounded-lg justify-self-center lg:hidden"
@@ -79,10 +93,12 @@ export const DetailsDisplayPage = () => {
             </div>
           </aside>
           <div className="p-4 border-t-2 lg:border-l-2 lg:border-t-0 lg:col-span-5">
-            <section className="grid w-full max-w-screen-md gap-4 p-4 mx-auto bg-white md:grid-cols-2 rounded-xl">
+            <section
+              style={{ viewTransitionName: `card-${params.id}` }}
+              className="grid w-full max-w-screen-md gap-4 p-4 mx-auto bg-white md:grid-cols-2 rounded-xl"
+            >
               <div className="overflow-hidden rounded-lg aspect-square">
                 <img
-                  loading="lazy"
                   width={300}
                   height={300}
                   className="object-cover w-full h-full max-w-lg "
