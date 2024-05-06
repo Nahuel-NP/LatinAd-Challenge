@@ -4,14 +4,7 @@ import { BASE_URL, QUERY_KEY } from "../../lib/contants";
 import { AppContext } from "../../context/AppContext";
 import { toast } from "sonner";
 
-interface DisplayToCreate {
-  name: string;
-  description: string;
-  price_per_day: string;
-  resolution_height: string;
-  resolution_width: string;
-  type: string;
-} */
+*/
 
 export const EditDisplayForm = () => {
   /*  const { userCredentials } = useContext(AppContext);

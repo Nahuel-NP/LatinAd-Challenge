@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Display } from "../../lib/interfaces";
 import { AppContext } from "../../context/AppContext";
 import useViewTransition from "../../hooks/useVIewTransition";
@@ -13,13 +13,16 @@ export const DisplayCard = (display: Display) => {
   };
 
   const viewDetails = () => {
+    setActiveDisplay(display);
     handletransition(`/display/${display.id}`);
   };
   return (
-    <section className="grid grid-cols-3 grid-rows-[1fr_auto_auto] gap-2 p-4  bg-white  rounded-xl  max-w-sm mx-auto">
+    <section
+      style={{ viewTransitionName: `card-${display?.id}` }}
+      className="grid grid-cols-3 grid-rows-[1fr_auto_auto] gap-2 p-4  bg-white  rounded-xl  max-w-sm mx-auto"
+    >
       <div className="overflow-hidden rounded-lg ">
         <img
-          loading="lazy"
           width={200}
           height={200}
           className="object-cover w-full h-full"
