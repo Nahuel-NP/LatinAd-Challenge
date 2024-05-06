@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import { Display } from "../../lib/interfaces";
 import { AppContext } from "../../context/AppContext";
 import useViewTransition from "../../hooks/useVIewTransition";
