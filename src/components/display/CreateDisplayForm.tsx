@@ -11,8 +11,13 @@ interface DisplayToCreate {
   resolution_height: string;
   resolution_width: string;
   type: string;
+  picture_url:string;
 }
 
+const PANTALLAS = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwavq1N8Ag1EzFcwTS7kwnsaJRY6RsUi2RgA&s',
+  'https://visualled.com/wp-content/uploads/2022/03/thumb-pantalla-led-gigante-jpg.webp',
+  'https://signoscv.com/wp-content/uploads/2021/10/Pantallas-digitales.jpg'
+]
 export const CreateDisplayForm = () => {
   const { userCredentials } = useContext(AppContext);
   const queryClient = useQueryClient();
@@ -65,6 +70,9 @@ export const CreateDisplayForm = () => {
       price_per_day,
     } = event.target as HTMLFormElement;
 
+    // random from PANTALLAS
+    const picture_url = PANTALLAS[Math.floor(Math.random() * PANTALLAS.length)];
+     
     createDisplayMutation.mutate({
       name: display_name.value,
       description: description.value,
@@ -72,6 +80,7 @@ export const CreateDisplayForm = () => {
       price_per_day: price_per_day.value,
       resolution_height: resolution_height.value,
       resolution_width: resolution_width.value,
+      picture_url:picture_url
     });
 
     form.reset();
