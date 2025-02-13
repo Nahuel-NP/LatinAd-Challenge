@@ -1,6 +1,11 @@
 
 export interface LoginResponse {
-  email: string;
-  password: string;
+  user:  User;
   token: string;
+}
+
+export interface User {
+  id:    string;
+  name:  string;
+  email: string;
 }

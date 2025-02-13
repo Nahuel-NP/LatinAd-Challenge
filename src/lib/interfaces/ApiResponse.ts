@@ -1,19 +1,25 @@
+export interface DisplayResponse {
+  displays: Display[];
+  meta:     Meta;
+}
+
 export interface Display {
   id:                number;
   name:              string;
   description:       string;
   picture_url:       string;
-  user_id:           number;
   price_per_day:     string;
   resolution_height: string;
   resolution_width:  string;
   type:              string;
+  user_id:           string;
 }
 
-
-export interface DisplayResponse {
-  totalCount: number;
-  data:       Display[];
+export interface Meta {
+  total_items:  number;
+  current_page: number;
+  total_pages:  number;
 }
+
 
 
