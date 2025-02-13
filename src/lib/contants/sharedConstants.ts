@@ -1,5 +1,5 @@
 
-export const BASE_URL = "https://challenge-front-7fw1.onrender.com";
+export const BASE_URL = "http://localhost:3000/api";
 
 export const PER_PAGE_VALUES = [ 6, 12, 24];
 
