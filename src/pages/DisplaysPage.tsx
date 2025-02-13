@@ -13,13 +13,13 @@ export const Displays = () => {
   const { userCredentials, filters } = useContext(AppContext);
 
   const fetchDysplays = (
-    pageSize: number,
-    offset: number,
+    page: number,
+    limit: number,
     name: string,
     type: string
   ): Promise<DisplayResponse> =>
     fetch(
-      `${BASE_URL}/display?pageSize=${pageSize}&offset=${offset}&name=${name}&type=${type}`,
+      `${BASE_URL}/display?page=${page}&limit=${limit}&name=${name}&type=${type}`,
       {
         method: "GET",
         headers: {
@@ -43,8 +43,8 @@ export const Displays = () => {
     ],
     queryFn: () =>
       fetchDysplays(
+        filters.page,
         filters.perPage,
-        (filters.page - 1) * filters.perPage,
         filters.name,
         filters.type ?? ""
       ),
@@ -82,10 +82,10 @@ export const Displays = () => {
           <div className="mt-4">
             {isFetching && <MessageResult message="Cargando.." />}
             {isError && <MessageResult message="Ocurrió un error" />}
-            {!isFetching && !isError && <DisplaysGrid data={data?.data!} />}
+            {!isFetching && !isError && <DisplaysGrid data={data?.displays!} />}
           </div>
 
-          {data?.data.length && <Pagination totalCount={data?.totalCount!} />}
+          {data?.displays.length && <Pagination totalCount={data?.meta.total_items!} />}
         </div>
       </div>
     </section>

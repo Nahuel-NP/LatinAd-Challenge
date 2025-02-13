@@ -33,7 +33,7 @@ export const LoginForm = () => {
       .then((response) => response.json())
       .then((data: LoginResponse) => {
         saveCredentials({
-          email: data.email,
+          email: data.user.email,
           isLogged: true,
           token: data.token,
         });
