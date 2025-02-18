@@ -55,7 +55,7 @@ export const LoginForm = () => {
     >
       <div className="flex flex-col w-full gap-2">
         <label className="text-white" htmlFor="email">
-          Email
+          Email <span className="text-xs text-gray-400">(email.prueba@gmail.com)</span>
         </label>
         <input
           type="email"
@@ -68,6 +68,7 @@ export const LoginForm = () => {
       <div className="flex flex-col w-full gap-2">
         <label className="text-white" htmlFor="password">
           Contraseña
+          <span className="text-xs text-gray-400">(hello)</span>
         </label>
         <input
           type={showPassword ? "text" : "password"}
