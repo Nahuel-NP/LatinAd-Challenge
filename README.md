@@ -1,5 +1,5 @@
 
-# LatinAd Challenge - Pedroso Nahuel
+# Front Challenge - Pedroso Nahuel
 
 Aplicación web para la administración de pantallas publicitarias de LatinAd.
 
@@ -30,7 +30,7 @@ React, Typescript, React Router DOM, TanStack React Query, TailwindCss y Sonner.
 
 ## Demo
 
-https://latin-ad-challenge-nnp.vercel.app/
+https://latin-ad-challenge-sandy.vercel.app/
 
 
 ## Autor

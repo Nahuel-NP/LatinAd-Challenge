@@ -13,7 +13,7 @@ export const Navbar = () => {
     <nav className="z-[100] w-full  bg-dodger-blue-950">
       <div className="container flex items-center justify-between p-4 mx-auto font-poppins">
         <Link to="/" className="text-2xl font-semibold text-white uppercase">
-          Latin<span className="font-bold text-dodger-blue-600">Ad</span>
+          Front<span className="font-bold text-dodger-blue-600">End</span>
         </Link>
         <button
           onClick={logout}

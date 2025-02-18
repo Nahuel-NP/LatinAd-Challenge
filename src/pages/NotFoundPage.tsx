@@ -7,7 +7,7 @@ export const NotFoundPage = () => {
       <div className="flex flex-col">
         <div className="relative">
           <h1 className="text-white text-7xl md:text-8xl text-latinBlue">
-            LATIN<span className="font-bold text-dodger-blue-600">AD</span>
+            Front<span className="font-bold text-dodger-blue-600">End</span>
           </h1>
           <p className="absolute right-0 px-2 text-base font-bold text-center text-black uppercase bg-orange-500 rounded-full -rotate-3">
             Challenge
