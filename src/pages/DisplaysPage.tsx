@@ -10,7 +10,7 @@ import { CreateDisplayForm } from "../components/display/CreateDisplayForm";
 import { MessageResult } from "../components/shared/MessageResult";
 
 export const Displays = () => {
-  const { userCredentials, filters } = useContext(AppContext);
+  const { userCredentials, filters, saveCredentials } = useContext(AppContext);
 
   const fetchDysplays = (
     page: number,
@@ -28,8 +28,19 @@ export const Displays = () => {
         },
       }
     )
-      .then((res) => res.json())
-      .catch((error) => console.log(error));
+      .then((res) => {
+      if (res.status === 401) {
+          saveCredentials({
+            email: "",
+            token: "",
+            isLogged: false,
+          });
+        }
+        return res.json();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
   const { data, isFetching, isError } = useQuery({
     queryKey: [
@@ -39,7 +50,6 @@ export const Displays = () => {
       filters.name,
       filters.type,
       filters.perPage,
-
     ],
     queryFn: () =>
       fetchDysplays(
@@ -57,10 +67,12 @@ export const Displays = () => {
   };
 
   return (
-    <section className="flex flex-col flex-1 h-full bg-gray-100 " >
+    <section className="flex flex-col flex-1 h-full bg-gray-100 ">
       <div className="container grid flex-1 grid-rows-[auto_1fr] lg:grid-rows-1 p-4 mx-auto lg:grid-cols-7">
         <aside className="flex flex-col items-center p-4 lg:col-span-2">
-          <h2 className="w-full mb-4 text-xl text-center border-b-2">Crear nuevo display</h2>
+          <h2 className="w-full mb-4 text-xl text-center border-b-2">
+            Crear nuevo display
+          </h2>
           <button
             onClick={toggleShowForm}
             className="px-4 py-2 my-2 text-white bg-orange-500 rounded-lg justify-self-center lg:hidden"
@@ -85,7 +97,9 @@ export const Displays = () => {
             {!isFetching && !isError && <DisplaysGrid data={data?.displays!} />}
           </div>
 
-          {data?.displays.length && <Pagination totalCount={data?.meta.total_items!} />}
+          {data?.displays.length && (
+            <Pagination totalCount={data?.meta.total_items!} />
+          )}
         </div>
       </div>
     </section>
