@@ -23,7 +23,7 @@ export const LoginForm = () => {
     setLoading(true);
     const { email, password } = event.target as HTMLFormElement;
 
-    fetch(`${BASE_URL}/login`, {
+    fetch(`${BASE_URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export const LoginForm = () => {
       .then((response) => response.json())
       .then((data: LoginResponse) => {
         saveCredentials({
-          email: data.email,
+          email: data.user.email,
           isLogged: true,
           token: data.token,
         });

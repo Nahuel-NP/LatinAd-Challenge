@@ -15,7 +15,7 @@ export const EditDisplayForm = () => {
     resolution_height: "",
     resolution_width: "",
     type: "",
-    user_id: 0,
+    user_id: '0',
   });
 
   const { activeDisplay, userCredentials, setActiveDisplay } =
